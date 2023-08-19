@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //플레이어 구현 클래스
+[RequireComponent(typeof(Health), typeof(AttackHandler))]
 public class PlayerControll : MonoBehaviour
 {
     [Header("디버그")]
@@ -20,6 +21,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float _ratationSpeed;
 
     PlayerInputHandler _inputHandler;
+    AttackHandler _attackHandler;
+    Health _health;
 
     Vector2 _curruntCameraRotation;
     float _curruntCameraDistance;
@@ -27,6 +30,11 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         _inputHandler = GetComponent<PlayerInputHandler>();
+        _attackHandler = GetComponent<AttackHandler>();
+        _health = GetComponent<Health>();
+
+        _attackHandler.OnHit += _health.TakeDamage;
+        _health.OnDeath += OnDie;
     }
 
     void Update()
@@ -44,7 +52,7 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    // 이동,회전 기능 담당함수
+    // 이동,회전 기능 실행
     public void HandleMovement()
     {
         Vector3 moveInput = _inputHandler.GetMoveInput();
@@ -58,7 +66,8 @@ public class PlayerControll : MonoBehaviour
         transform.position += deltaPosition;
     }
 
-    // 카메라 담당 함수
+    #region 카메라 조작
+    // 카메라 조작 실행
     public void HandleControllCamera()
     {
         _curruntCameraRotation.x = transform.rotation.eulerAngles.y;
@@ -92,4 +101,13 @@ public class PlayerControll : MonoBehaviour
     {
         _curruntCameraDistance -= delta;
     }
+    #endregion
+
+    #region 피격,체력 관련 함수
+    //플레이어 사망
+    void OnDie(GameObject killer)
+    {
+        Destroy(gameObject);
+    }
+    #endregion
 }
