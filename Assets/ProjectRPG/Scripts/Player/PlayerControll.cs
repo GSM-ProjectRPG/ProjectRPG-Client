@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÇÃ·¹ÀÌ¾î ±¸Çö Å¬·¡½º
+//í”Œë ˆì´ì–´ êµ¬í˜„ í´ë˜ìŠ¤
 public class PlayerControll : MonoBehaviour
 {
-    [Header("µğ¹ö±×")]
+    [Header("ë””ë²„ê·¸")]
     [SerializeField] bool _showCameraVerticalAngleRange;
-    [Header("Ä«¸Ş¶ó")]
+    [Header("ì¹´ë©”ë¼")]
     [SerializeField] Camera _camera;
     [SerializeField] Transform _cameraRotateCentor;
     [SerializeField] Transform _cameraLookCentor;
@@ -15,7 +15,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float _maxCameraDistance;
     [SerializeField] float _minCameraVerticalAngle;
     [SerializeField] float _maxCameraVerticalAngle;
-    [Header("ÇÃ·¹ÀÌ¾î ÀÌµ¿/È¸Àü °ü·Ã")]
+    [Header("í”Œë ˆì´ì–´ ì´ë™/íšŒì „ ê´€ë ¨")]
     [SerializeField] float _moveSpeed;
     [SerializeField] float _ratationSpeed;
 
@@ -44,7 +44,7 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    // ÀÌµ¿,È¸Àü ±â´É ´ã´çÇÔ¼ö
+    // ì´ë™,íšŒì „ ê¸°ëŠ¥ ë‹´ë‹¹í•¨ìˆ˜
     public void HandleMovement()
     {
         Vector3 moveInput = _inputHandler.GetMoveInput();
@@ -58,7 +58,7 @@ public class PlayerControll : MonoBehaviour
         transform.position += deltaPosition;
     }
 
-    // Ä«¸Ş¶ó ´ã´ç ÇÔ¼ö
+    // ì¹´ë©”ë¼ ë‹´ë‹¹ í•¨ìˆ˜
     public void HandleControllCamera()
     {
         _curruntCameraRotation.x = transform.rotation.eulerAngles.y;
@@ -68,7 +68,7 @@ public class PlayerControll : MonoBehaviour
         UpdateCamera();
     }
 
-    // Ä«¸Ş¶ó ÁÂÇ¥ °»½Å
+    // ì¹´ë©”ë¼ ì¢Œí‘œ ê°±ì‹ 
     public void UpdateCamera()
     {
         _curruntCameraRotation.y = Mathf.Clamp(_curruntCameraRotation.y, _minCameraVerticalAngle, _maxCameraVerticalAngle);
@@ -81,13 +81,13 @@ public class PlayerControll : MonoBehaviour
         _camera.transform.LookAt(_cameraLookCentor);
     }
 
-    // Ä«¸Ş¶ó È¸Àü
+    // ì¹´ë©”ë¼ íšŒì „
     public void RotateCamera(float horizontalDelta, float verticalDelta)
     {
         _curruntCameraRotation = new Vector2(_curruntCameraRotation.x + horizontalDelta, _curruntCameraRotation.y + -verticalDelta);
     }
 
-    // Ä«¸Ş¶ó ÁÜ Á¶Àı
+    // ì¹´ë©”ë¼ ì¤Œ ì¡°ì ˆ
     public void AddCameraDistance(float delta)
     {
         _curruntCameraDistance -= delta;
