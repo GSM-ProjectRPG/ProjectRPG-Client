@@ -15,9 +15,9 @@ public class Health : MonoBehaviour
     public float MaxHp;
     public float CurruntHp { get; private set; }
 
-    bool _isDead;
+    private bool _isDead;
 
-    void Start()
+    public void Start()
     {
         CurruntHp = MaxHp;
     }
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
     }
 
     //killer에게 죽음
-    void HandleDie(GameObject killer = null)
+    public void HandleDie(GameObject killer = null)
     {
         if (_isDead) return;
         _isDead = true;

@@ -7,27 +7,27 @@ using UnityEngine;
 public class PlayerControll : MonoBehaviour
 {
     [Header("디버그")]
-    [SerializeField] bool _showCameraVerticalAngleRange;
+    [SerializeField] private bool _showCameraVerticalAngleRange;
     [Header("카메라")]
-    [SerializeField] Camera _camera;
-    [SerializeField] Transform _cameraRotateCentor;
-    [SerializeField] Transform _cameraLookCentor;
-    [SerializeField] float _minCameraDistance;
-    [SerializeField] float _maxCameraDistance;
-    [SerializeField] float _minCameraVerticalAngle;
-    [SerializeField] float _maxCameraVerticalAngle;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private Transform _cameraRotateCentor;
+    [SerializeField] private Transform _cameraLookCentor;
+    [SerializeField] private float _minCameraDistance;
+    [SerializeField] private float _maxCameraDistance;
+    [SerializeField] private float _minCameraVerticalAngle;
+    [SerializeField] private float _maxCameraVerticalAngle;
     [Header("플레이어 이동/회전 관련")]
-    [SerializeField] float _moveSpeed;
-    [SerializeField] float _ratationSpeed;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _ratationSpeed;
 
-    PlayerInputHandler _inputHandler;
-    AttackHandler _attackHandler;
-    Health _health;
+    private PlayerInputHandler _inputHandler;
+    private AttackHandler _attackHandler;
+    private Health _health;
 
-    Vector2 _curruntCameraRotation;
-    float _curruntCameraDistance;
+    private Vector2 _curruntCameraRotation;
+    private float _curruntCameraDistance;
 
-    void Start()
+    public void Start()
     {
         _inputHandler = GetComponent<PlayerInputHandler>();
         _attackHandler = GetComponent<AttackHandler>();
@@ -37,7 +37,7 @@ public class PlayerControll : MonoBehaviour
         _health.OnDeath += OnDie;
     }
 
-    void Update()
+    public void Update()
     {
         HandleMovement();
         HandleControllCamera();
@@ -105,7 +105,7 @@ public class PlayerControll : MonoBehaviour
 
     #region 피격,체력 관련 함수
     //플레이어 사망
-    void OnDie(GameObject killer)
+    private void OnDie(GameObject killer)
     {
         Destroy(gameObject);
     }
