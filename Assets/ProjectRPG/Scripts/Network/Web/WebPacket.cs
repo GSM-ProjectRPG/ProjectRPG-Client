@@ -19,7 +19,6 @@ namespace ProjectRPG
         public string Password;
     }
 
-
     public class ServerInfo
     {
         public string Name;
