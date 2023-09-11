@@ -8,7 +8,7 @@ namespace ProjectRPG
 {
     public class WebManager
     {
-        public string BaseUrl { get; set; } = "https://192.168.1.82:5001/api";
+        public string BaseUrl { get; set; } = "https://localhost:5001/api";
 
         public void SendPostRequest<T>(string url, object obj, Action<T> res)
         {
