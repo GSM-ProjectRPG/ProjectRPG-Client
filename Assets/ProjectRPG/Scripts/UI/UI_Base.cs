@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 namespace ProjectRPG
 {
@@ -44,7 +45,7 @@ namespace ProjectRPG
 		}
 
 		protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-		protected Text GetText(int idx) { return Get<Text>(idx); }
+		protected TMP_Text GetText(int idx) { return Get<TMP_Text>(idx); }
 		protected Button GetButton(int idx) { return Get<Button>(idx); }
 		protected Image GetImage(int idx) { return Get<Image>(idx); }
 
