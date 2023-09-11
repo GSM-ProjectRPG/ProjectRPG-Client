@@ -54,7 +54,6 @@ namespace ProjectRPG
             string accountName = Get<GameObject>((int)GameObjects.AccountNameField).GetComponent<TMP_InputField>().text;
             string password = Get<GameObject>((int)GameObjects.PasswordField).GetComponent<TMP_InputField>().text;
 
-
             var req = new LoginAccountPacketReq()
             {
                 AccountName = accountName,
@@ -69,7 +68,11 @@ namespace ProjectRPG
 
                 if (res.LoginOk)
                 {
-                    // TODO
+                    Managers.Network.AccountId = res.AccountId;
+                    Managers.Network.Token = res.Token;
+
+                    var popup = Managers.UI.ShowPopupUI<UI_SelectServerPopup>();
+                    popup.SetServerInfo(res.ServerList);
                 }
             });
         }

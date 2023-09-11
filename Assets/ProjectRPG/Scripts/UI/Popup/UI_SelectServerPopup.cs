@@ -13,7 +13,7 @@ namespace ProjectRPG
             base.Init();
         }
 
-        public void SerServerInfo(List<ServerInfo> servers)
+        public void SetServerInfo(List<ServerInfo> serverList)
         {
             Items.Clear();
 
@@ -21,7 +21,7 @@ namespace ProjectRPG
             foreach (Transform child in grid.transform)
                 Destroy(child.gameObject);
 
-            foreach (var info in servers)
+            foreach (var info in serverList)
             {
                 var go = Managers.Resource.Instantiate("UI/Popup/UI_SelectServerPopup_Item", grid.transform);
                 var item = go.GetOrAddComponent<UI_SelectServerPopup_Item>();
