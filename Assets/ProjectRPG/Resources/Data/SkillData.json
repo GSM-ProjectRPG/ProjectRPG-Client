@@ -1,0 +1,11 @@
+{
+  "skills": [
+    {
+      "id": "0",
+      "name": "NULL",
+      "cooldown": "1",
+      "damage": "1",
+      "skillType": "NONE"
+    }
+  ]
+}

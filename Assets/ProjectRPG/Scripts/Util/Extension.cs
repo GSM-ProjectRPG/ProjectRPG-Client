@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Google.Protobuf.Protocol;
 
 namespace ProjectRPG
 {
@@ -19,6 +20,11 @@ namespace ProjectRPG
         public static bool IsValid(this GameObject go)
         {
             return go != null && go.activeSelf;
+        }
+
+        public static Vector3 ToVector3(this Vector vector)
+        {
+            return new Vector3(vector.X, vector.Y, vector.Z);
         }
     }
 }
