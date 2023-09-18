@@ -1,0 +1,20 @@
+{
+  "weapons": [
+    {
+      "id": "0",
+      "name": "NULL",
+      "weaponType": "Sword",
+      "damage": "1",
+      "iconPath": "Textures/Item/sword"
+    }
+  ],
+  "consumables": [
+    {
+      "id": "200",
+      "name": "HP 물약",
+      "consumableType": "Potion",
+      "damage": "10",
+      "iconPath": "Textures/Item/hp"
+    }
+  ]
+}

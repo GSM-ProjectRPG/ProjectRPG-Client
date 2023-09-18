@@ -1,45 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using ACore;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
+using ProjectRPG;
+using ACore;
 
 public class PacketHandler
 {
     public static void S_ConnectedToServerHandler(PacketSession session, IMessage packet)
     {
-        // TODO : 로그인 시작
+        Debug.Log("S_ConnectedToServerHandler");
+        var loginPacket = new C_Login();
+        string path = Application.dataPath;
+        loginPacket.UniqueId = path.GetHashCode().ToString();
+        Managers.Network.Send(loginPacket);
     }
 
     public static void S_LoginHandler(PacketSession session, IMessage packet)
     {
+        var loginPacket = (S_Login)packet;
+        Debug.Log($"LoginOk({loginPacket.LoginOk})");
 
+        // TODO : 캐릭터 생성, 선택 창
+        if (loginPacket.Players == null || loginPacket.Players.Count == 0)
+        {
+            var createPlayerPacket = new C_CreatePlayer();
+            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
+            Managers.Network.Send(createPlayerPacket);
+        }
+        else
+        {
+            // (임시) 첫번째 캐릭터로 로그인
+            var info = loginPacket.Players[0];
+            var enterGamePacket = new C_EnterGame() { Name = info.Name };
+            Managers.Network.Send(enterGamePacket);
+        }
     }
 
     public static void S_CreatePlayerHandler(PacketSession session, IMessage packet)
     {
+        var createOkPacket = (S_CreatePlayer)packet;
 
+        if (createOkPacket.Player == null)
+        {
+            var createPlayerPacket = new C_CreatePlayer();
+            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
+            Managers.Network.Send(createPlayerPacket);
+        }
+        else
+        {
+            var enterGamePacket = new C_EnterGame() { Name = createOkPacket.Player.Name };
+            Managers.Network.Send(enterGamePacket);
+        }
     }
 
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
-
+        var enterGamePacket = (S_EnterGame)packet;
+        Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
     {
-
+        Managers.Object.Clear();
     }
 
     public static void S_SpawnHandler(PacketSession session, IMessage packet)
     {
-
+        var spawnPacket = (S_Spawn)packet;
+        foreach (var info in spawnPacket.Objects)
+            Managers.Object.Add(info, myPlayer: false);
     }
 
     public static void S_DespawnHandler(PacketSession session, IMessage packet)
     {
-
+        var despawnPacket = (S_Despawn)packet;
+        foreach (var id in despawnPacket.ObjectIds)
+            Managers.Object.Remove(id);
     }
 
     public static void S_MoveHandler(PacketSession session, IMessage packet)
