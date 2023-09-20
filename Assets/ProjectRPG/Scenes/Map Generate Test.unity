@@ -959,7 +959,7 @@ MonoBehaviour:
   _obstacleLayerMask: 6
   _spawnAreas: []
   _mapName: Map_000
-  _filePath: Assets/ProjectRPG/Resources/Map
+  _filePath: ../ProjectRPG-Server/Common/MapData
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

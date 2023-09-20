@@ -31,7 +31,7 @@ namespace ProjectRPG
 
         [Header("Extract Settings")]
         [SerializeField] private string _mapName;
-        [SerializeField] private string _filePath = "Assets/ProjectRPG/Resources/Map";
+        [SerializeField] private string _filePath = "../ProjectRPG-Server/Common/MapData";
 
         private List<List<Vector3>> _map = new List<List<Vector3>>();
         private Dictionary<Vector3, int> _mapData = new Dictionary<Vector3, int>();
