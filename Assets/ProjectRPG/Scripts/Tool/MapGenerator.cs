@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using UnityEngine;
 
@@ -31,43 +30,34 @@ namespace ProjectRPG
 
         [Header("Extract Settings")]
         [SerializeField] private string _mapName;
-        [SerializeField] private string _filePath = "Assets/ProjectRPG/Resources/Map";
+        [SerializeField] private string _filePath = "../ProjectRPG-Server/Common/MapData";
 
-        private List<List<Vector3>> _map = new List<List<Vector3>>();
-        private Dictionary<Vector3, int> _mapData = new Dictionary<Vector3, int>();
+        private KeyValuePair<Vector3, int>[,] _map = null;
 
         public void GenerateMap()
         {
             Debug.Log("Generate Map");
-
-            _map.Clear();
-            _mapData.Clear();
-
-            int sizeX = _calculationScale.x * 2 + 1;
-            int sizeZ = _calculationScale.z * 2 + 1;
-
+            
             int minX = (int)transform.position.x - _calculationScale.x;
             int maxX = (int)transform.position.x + _calculationScale.x;
             int minZ = (int)transform.position.z - _calculationScale.z;
             int maxZ = (int)transform.position.z + _calculationScale.z;
 
+            int sizeX = _calculationScale.x * 2 + 1;
+            int sizeZ = _calculationScale.z * 2 + 1;
+
+            _map = new KeyValuePair<Vector3, int>[sizeZ, sizeX];
+
             for (int z = maxZ; z >= minZ; z--)
             {
-                var list = new List<Vector3>();
-
                 for (int x = minX; x <= maxX; x++)
                 {
                     var origin = new Vector3(x, _calculationScale.y, z);
-                    
                     if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit))
                     {
-                        var pos = hit.point;
-                        list.Add(pos);
-                        _mapData.Add(pos, hit.collider.gameObject.layer);
+                        _map[z - minZ, x - minX] = new KeyValuePair<Vector3, int>(hit.point, hit.collider.gameObject.layer);
                     }
                 }
-
-                _map.Add(list);
             }
 
             using (var writer = File.CreateText($"{_filePath}/{_mapName}.txt"))
@@ -77,11 +67,15 @@ namespace ProjectRPG
                 writer.WriteLine(minZ);
                 writer.WriteLine(maxZ);
 
-                foreach (var line in _map)
+                for (int z = maxZ; z >= minZ; z--)
                 {
-                    foreach (var position in line)
+                    for (int x = minX; x <= maxX; x++)
                     {
-                        writer.Write((int)position.y);
+                        var data = _map[z - minZ, x - minX];
+                        int height = (int)data.Key.y;
+                        int collisionFlag = data.Value == _obstacleLayerMask ? 1 : 0;
+                        int cellData = (collisionFlag << 8) | height;
+                        writer.Write($"{cellData} ");
                     }
                     writer.WriteLine();
                 }
@@ -93,20 +87,21 @@ namespace ProjectRPG
             Gizmos.color = Color.white;
             Gizmos.DrawWireCube(transform.position, _calculationScale * 2);
 
-
-            foreach (var origin in _map.SelectMany(list => list))
+            if (_map != null)
             {
-                if (_mapData.TryGetValue(origin, out int layer))
+                foreach (var origin in _map)
                 {
+                    int layer = origin.Value;
+
                     if (layer == _groundLayerMask)
                         Gizmos.color = _groundColor;
                     else if (layer == _obstacleLayerMask)
                         Gizmos.color = _obstacleColor;
                     else
                         Gizmos.color = Color.black;
-                }
 
-                Gizmos.DrawCube(origin + new Vector3(0, 0.001f, 0), new Vector3(0.95f, 0, 0.95f));
+                    Gizmos.DrawCube(origin.Key + new Vector3(0, 0.001f, 0), new Vector3(0.95f, 0, 0.95f));
+                }
             }
         }
     }
