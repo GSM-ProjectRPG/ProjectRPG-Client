@@ -18,22 +18,12 @@ public class PacketHandler
     public static void S_LoginHandler(PacketSession session, IMessage packet)
     {
         var loginPacket = (S_Login)packet;
-        Debug.Log($"LoginOk({loginPacket.LoginOk})");
+        if (loginPacket.LoginOk == 0) return;
 
-        // TODO : 캐릭터 생성, 선택 창
+        Managers.Scene.LoadScene(Define.Scene.Lobby);
+
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)
-        {
-            var createPlayerPacket = new C_CreatePlayer();
-            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
-            Managers.Network.Send(createPlayerPacket);
-        }
-        else
-        {
-            // (임시) 첫번째 캐릭터로 로그인
-            var info = loginPacket.Players[0];
-            var enterGamePacket = new C_EnterGame() { Name = info.Name };
-            Managers.Network.Send(enterGamePacket);
-        }
+            Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
     }
 
     public static void S_CreatePlayerHandler(PacketSession session, IMessage packet)
