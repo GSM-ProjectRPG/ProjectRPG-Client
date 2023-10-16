@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Google.Protobuf.Protocol;
+using System.Collections.Generic;
 
 namespace ProjectRPG
 {
@@ -43,6 +44,11 @@ namespace ProjectRPG
         }
 
         public void OnClickStartButton(PointerEventData evt)
+        {
+
+        }
+         
+        public void UpdateLobbyPlayers(List<LobbyPlayerInfo> lobbyPlayers)
         {
 
         }

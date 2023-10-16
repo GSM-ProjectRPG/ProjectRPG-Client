@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
@@ -20,10 +21,17 @@ public class PacketHandler
         var loginPacket = (S_Login)packet;
         if (loginPacket.LoginOk == 0) return;
 
-        Managers.Scene.LoadScene(Define.Scene.Lobby);
-
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)
-            Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
+        {
+            Managers.Scene.LoadScene(Define.Scene.Create);
+        }
+        else
+        {
+            Managers.Scene.LoadScene(Define.Scene.Lobby);
+            var lobbyScene = (LobbyScene)Managers.Scene.CurrentScene;
+            var list = loginPacket.Players.ToList();
+            lobbyScene.UpdateLobbyPlayers(loginPacket.Players.ToList());
+        }
     }
 
     public static void S_CreatePlayerHandler(PacketSession session, IMessage packet)

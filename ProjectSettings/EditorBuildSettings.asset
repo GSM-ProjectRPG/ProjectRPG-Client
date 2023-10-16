@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/ProjectRPG/Scenes/Login.unity
     guid: d582abdaab74b4142879eb809b4f838c
   - enabled: 1
+    path: Assets/ProjectRPG/Scenes/Create.unity
+    guid: 41aba6287cfa72b4e85ed73a848a8a07
+  - enabled: 1
     path: Assets/ProjectRPG/Scenes/Lobby.unity
     guid: 7125ccda7bb55ad4490674662a512f61
   - enabled: 1

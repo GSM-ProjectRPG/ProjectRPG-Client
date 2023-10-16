@@ -1,4 +1,5 @@
-using UnityEngine;
+using System.Collections.Generic;
+using Google.Protobuf.Protocol;
 
 namespace ProjectRPG
 {
@@ -18,6 +19,11 @@ namespace ProjectRPG
         public override void Clear()
         {
 
+        }
+
+        public void UpdateLobbyPlayers(List<LobbyPlayerInfo> lobbyPlayers)
+        {
+            _lobbySceneUI.UpdateLobbyPlayers(lobbyPlayers);
         }
     }
 }
