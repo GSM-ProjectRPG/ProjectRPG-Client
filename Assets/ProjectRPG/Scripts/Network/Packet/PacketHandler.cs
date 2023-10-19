@@ -10,9 +10,11 @@ public class PacketHandler
     public static void S_ConnectedToServerHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ConnectedToServerHandler");
-        var loginPacket = new C_Login();
-        string path = Application.dataPath;
-        loginPacket.UniqueId = path.GetHashCode().ToString();
+        var loginPacket = new C_Login()
+        {
+            AccountName = Managers.Network.AccountName,
+            Token = Managers.Network.Token
+        };
         Managers.Network.Send(loginPacket);
     }
 

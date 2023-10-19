@@ -68,7 +68,7 @@ namespace ProjectRPG
 
                 if (res.LoginOk)
                 {
-                    Managers.Network.AccountId = res.AccountId;
+                    Managers.Network.AccountName = res.AccountName;
                     Managers.Network.Token = res.Token;
 
                     var popup = Managers.UI.ShowPopupUI<UI_SelectServerPopup>();
