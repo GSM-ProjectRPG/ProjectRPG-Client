@@ -66,10 +66,13 @@ namespace ProjectRPG
 
         public void UpdateCharacterModel()
         {
-            int customizeInfo = _lobbyPlayers[_seletedLobbyPlayer].CustomizeInfo;
-            int bodyId = customizeInfo >> 8;
-            int faceId = customizeInfo & 0x8F;
-            _customizer.Customize(bodyId, faceId);
+            if (_lobbyPlayers.Count > 0)
+            {
+                int customizeInfo = _lobbyPlayers[_seletedLobbyPlayer].CustomizeInfo;
+                int bodyId = customizeInfo >> 8;
+                int faceId = customizeInfo & 0x8F;
+                _customizer.Customize(bodyId, faceId);
+            }
         }
     }
 }
