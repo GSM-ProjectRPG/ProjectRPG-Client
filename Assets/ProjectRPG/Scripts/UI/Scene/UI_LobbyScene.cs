@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Google.Protobuf.Protocol;
 using System.Collections.Generic;
+using TMPro;
 
 namespace ProjectRPG
 {
@@ -19,6 +20,11 @@ namespace ProjectRPG
             StartButton
         }
 
+        private enum Texts
+        {
+            PlayerName
+        }
+
         public override void Init()
         {
             base.Init();
@@ -28,6 +34,7 @@ namespace ProjectRPG
             UpdateCharacterModel();
 
             Bind<Image>(typeof(Images));
+            Bind<TMP_Text>(typeof(Texts));
 
             GetImage((int)Images.NextButton).gameObject.BindEvent(OnClickNextButton);
             GetImage((int)Images.PrevButton).gameObject.BindEvent(OnClickPrevButton);
@@ -43,7 +50,7 @@ namespace ProjectRPG
 
         public void OnClickPrevButton(PointerEventData evt)
         {
-            _seletedLobbyPlayer = (_seletedLobbyPlayer - 1) < 0 ? _lobbyPlayers.Count - 1 : _seletedLobbyPlayer;
+            _seletedLobbyPlayer = (_seletedLobbyPlayer - 1) < 0 ? _lobbyPlayers.Count - 1 : _seletedLobbyPlayer - 1;
             UpdateCharacterModel();
         }
 
@@ -54,8 +61,11 @@ namespace ProjectRPG
 
         public void OnClickStartButton(PointerEventData evt)
         {
-            var enterGamePacket = new C_EnterGame() { Name = _lobbyPlayers[_seletedLobbyPlayer].Name };
-            Managers.Network.Send(enterGamePacket);
+            Managers.Scene.LoadScene(Define.Scene.Game, () =>
+            {
+                var enterGamePacket = new C_EnterGame() { Name = _lobbyPlayers[_seletedLobbyPlayer].Name };
+                Managers.Network.Send(enterGamePacket);
+            });
         }
          
         public void UpdateLobbyPlayers(List<LobbyPlayerInfo> lobbyPlayers)
@@ -68,7 +78,9 @@ namespace ProjectRPG
         {
             if (_lobbyPlayers.Count > 0)
             {
-                int customizeInfo = _lobbyPlayers[_seletedLobbyPlayer].CustomizeInfo;
+                var selectedPlayer = _lobbyPlayers[_seletedLobbyPlayer];
+                GetText((int)Texts.PlayerName).text = $"[Lv.{selectedPlayer.Stat.Level}] {selectedPlayer.Name}";
+                int customizeInfo = selectedPlayer.CustomizeInfo;
                 int bodyId = customizeInfo >> 8;
                 int faceId = customizeInfo & 0x8F;
                 _customizer.Customize(bodyId, faceId);

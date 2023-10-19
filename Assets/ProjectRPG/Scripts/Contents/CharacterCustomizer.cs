@@ -16,8 +16,8 @@ namespace ProjectRPG
             if (_renderer != null)
             {
                 var materials = _renderer.materials;
-                materials[0] = Managers.Resource.Load<Material>($"Prefabs/Customize/Body/M_Chibi_Cat_{bodyId:00}");
-                materials[1] = Managers.Resource.Load<Material>($"Prefabs/Customize/Face/M_Chibi_Emo_{faceId:00}");
+                materials[0] = Managers.Resource.Load<Material>($"Prefabs/Customize/Body/M_Chibi_Cat_{bodyId + 1:00}");
+                materials[1] = Managers.Resource.Load<Material>($"Prefabs/Customize/Face/M_Chibi_Emo_{faceId + 1:00}");
                 _renderer.materials = materials;
             }
         }

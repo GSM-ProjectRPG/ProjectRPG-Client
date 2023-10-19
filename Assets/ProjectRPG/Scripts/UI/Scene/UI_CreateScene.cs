@@ -10,8 +10,8 @@ namespace ProjectRPG
     {
         private CharacterCustomizer _customizer;
 
-        private int _selectedBodyId = 1;
-        private int _selectedFaceId = 1;
+        private int _selectedBodyId = 0;
+        private int _selectedFaceId = 0;
 
         private Material[] _bodyMaterials;
         private Material[] _faceMaterials;
@@ -57,14 +57,14 @@ namespace ProjectRPG
         public void OnClickChangeBodyButton(PointerEventData evt)
         {
             _selectedBodyId = (_selectedBodyId + 1) % _bodyMaterials.Length;
-            GetText((int)Texts.ChangeBodyButtonText).text = $"Body {_selectedBodyId:00}";
+            GetText((int)Texts.ChangeBodyButtonText).text = $"Body {_selectedBodyId + 1:00}";
             UpdateCharacterModel();
         }
 
         public void OnClickChangeFaceButton(PointerEventData evt)
         {
             _selectedFaceId = (_selectedFaceId + 1) % _faceMaterials.Length;
-            GetText((int)Texts.ChangeFaceButtonText).text = $"Face {_selectedFaceId:00}";
+            GetText((int)Texts.ChangeFaceButtonText).text = $"Face {_selectedFaceId + 1:00}";
             UpdateCharacterModel();
         }
 
