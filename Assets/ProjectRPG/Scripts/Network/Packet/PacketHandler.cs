@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
@@ -9,30 +10,30 @@ public class PacketHandler
     public static void S_ConnectedToServerHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ConnectedToServerHandler");
-        var loginPacket = new C_Login();
-        string path = Application.dataPath;
-        loginPacket.UniqueId = path.GetHashCode().ToString();
+        var loginPacket = new C_Login()
+        {
+            AccountName = Managers.Network.AccountName,
+            Token = Managers.Network.Token
+        };
         Managers.Network.Send(loginPacket);
     }
 
     public static void S_LoginHandler(PacketSession session, IMessage packet)
     {
         var loginPacket = (S_Login)packet;
-        Debug.Log($"LoginOk({loginPacket.LoginOk})");
+        if (loginPacket.LoginOk == 0) return;
 
-        // TODO : 캐릭터 생성, 선택 창
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)
         {
-            var createPlayerPacket = new C_CreatePlayer();
-            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
-            Managers.Network.Send(createPlayerPacket);
+            Managers.Scene.LoadScene(Define.Scene.Create);
         }
         else
         {
-            // (임시) 첫번째 캐릭터로 로그인
-            var info = loginPacket.Players[0];
-            var enterGamePacket = new C_EnterGame() { Name = info.Name };
-            Managers.Network.Send(enterGamePacket);
+            Managers.Scene.LoadScene(Define.Scene.Lobby, () =>
+            {
+                var lobbyScene = (LobbyScene)Managers.Scene.CurrentScene;
+                lobbyScene.UpdateLobbyPlayers(loginPacket.Players.ToList());
+            });
         }
     }
 
@@ -42,20 +43,23 @@ public class PacketHandler
 
         if (createOkPacket.Player == null)
         {
-            var createPlayerPacket = new C_CreatePlayer();
-            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
-            Managers.Network.Send(createPlayerPacket);
+            Debug.Log("Create Failed");
         }
         else
         {
-            var enterGamePacket = new C_EnterGame() { Name = createOkPacket.Player.Name };
-            Managers.Network.Send(enterGamePacket);
+            Managers.Scene.LoadScene(Define.Scene.Game, () =>
+            {
+                var enterGamePacket = new C_EnterGame() { Name = createOkPacket.Player.Name };
+                Managers.Network.Send(enterGamePacket);
+            });
         }
     }
 
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
         var enterGamePacket = (S_EnterGame)packet;
+
+        // TODO : 게임 입장 로직
         Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
     }
 

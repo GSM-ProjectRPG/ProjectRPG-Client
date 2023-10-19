@@ -7,6 +7,7 @@
             Unknown,
             Login,
             Lobby,
+            Create,
             Game,
         }
 

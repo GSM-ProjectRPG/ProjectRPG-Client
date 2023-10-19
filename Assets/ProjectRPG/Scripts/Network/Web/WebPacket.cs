@@ -30,7 +30,7 @@ namespace ProjectRPG
     public class LoginAccountPacketRes
     {
         public bool LoginOk;
-        public int AccountId;
+        public string AccountName;
         public int Token;
         public List<ServerInfo> ServerList = new List<ServerInfo>();
     }

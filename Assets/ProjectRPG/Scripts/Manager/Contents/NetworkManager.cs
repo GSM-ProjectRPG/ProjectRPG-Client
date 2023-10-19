@@ -6,7 +6,7 @@ namespace ProjectRPG
 {
     public class NetworkManager
     {
-        public int AccountId { get; set; }
+        public string AccountName { get; set; }
         public int Token { get; set; }
 
         private ServerSession _session = new ServerSession();

@@ -59,6 +59,12 @@ namespace ProjectRPG
                     pc.Transform = info.Transform;
                     pc.Stat.MergeFrom(info.Stat);
                 }
+
+                var customizer = go.GetComponentInChildren<CharacterCustomizer>();
+                if (customizer != null)
+                {
+                    customizer.Customize(info.CustomizeInfo);
+                }
             }
             else if (type == GameObjectType.Monster)
             {
