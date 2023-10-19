@@ -80,10 +80,7 @@ namespace ProjectRPG
             {
                 var selectedPlayer = _lobbyPlayers[_seletedLobbyPlayer];
                 GetText((int)Texts.PlayerName).text = $"[Lv.{selectedPlayer.Stat.Level}] {selectedPlayer.Name}";
-                int customizeInfo = selectedPlayer.CustomizeInfo;
-                int bodyId = customizeInfo >> 8;
-                int faceId = customizeInfo & 0x8F;
-                _customizer.Customize(bodyId, faceId);
+                _customizer.Customize(selectedPlayer.CustomizeInfo);
             }
         }
     }
