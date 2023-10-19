@@ -45,8 +45,11 @@ public class PacketHandler
         }
         else
         {
-            var enterGamePacket = new C_EnterGame() { Name = createOkPacket.Player.Name };
-            Managers.Network.Send(enterGamePacket);
+            Managers.Scene.LoadScene(Define.Scene.Game, () =>
+            {
+                var enterGamePacket = new C_EnterGame() { Name = createOkPacket.Player.Name };
+                Managers.Network.Send(enterGamePacket);
+            });
         }
     }
 
@@ -55,10 +58,7 @@ public class PacketHandler
         var enterGamePacket = (S_EnterGame)packet;
 
         // TODO : 게임 입장 로직
-        Managers.Scene.LoadScene(Define.Scene.Game, () =>
-        {
-            Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
-        });
+        Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
