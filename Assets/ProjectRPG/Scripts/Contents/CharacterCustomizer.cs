@@ -11,7 +11,7 @@ namespace ProjectRPG
             _renderer = GetComponentInChildren<SkinnedMeshRenderer>();
         }
 
-        public void Customize(int bodyId, int faceId, int accessoryId)
+        public void Customize(int bodyId, int faceId)
         {
             if (_renderer != null)
             {

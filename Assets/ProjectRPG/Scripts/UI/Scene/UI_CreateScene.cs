@@ -12,7 +12,6 @@ namespace ProjectRPG
 
         private int _selectedBodyId = 1;
         private int _selectedFaceId = 1;
-        private int _selectedAccessoryId = 1;
 
         private Material[] _bodyMaterials;
         private Material[] _faceMaterials;
@@ -26,15 +25,13 @@ namespace ProjectRPG
         {
             ChangeBodyButton,
             ChangeFaceButton,
-            ChangeAccessoryButton,
             CreateButton
         }
 
         private enum Texts
         {
             ChangeBodyButtonText,
-            ChangeFaceButtonText,
-            ChangeAccessoryButtonText
+            ChangeFaceButtonText
         }
 
         public override void Init()
@@ -54,7 +51,6 @@ namespace ProjectRPG
 
             GetImage((int)Images.ChangeBodyButton).gameObject.BindEvent(OnClickChangeBodyButton);
             GetImage((int)Images.ChangeFaceButton).gameObject.BindEvent(OnClickChangeFaceButton);
-            GetImage((int)Images.ChangeAccessoryButton).gameObject.BindEvent(OnClickChangeAccessoryButton);
             GetImage((int)Images.CreateButton).gameObject.BindEvent(OnClickCreateButton);
         }
 
@@ -72,17 +68,13 @@ namespace ProjectRPG
             UpdateCharacterModel();
         }
 
-        public void OnClickChangeAccessoryButton(PointerEventData evt)
-        {
-            UpdateCharacterModel();
-        }
-
         public void OnClickCreateButton(PointerEventData evt)
         {
             var createPacket = new C_CreatePlayer()
             {
                 Name = GetObject((int)GameObjects.PlayerNameField).GetComponent<TMP_InputField>().text,
-
+                BodyId = _selectedBodyId,
+                FaceId = _selectedFaceId
             };
 
             Managers.Network.Send(createPacket);

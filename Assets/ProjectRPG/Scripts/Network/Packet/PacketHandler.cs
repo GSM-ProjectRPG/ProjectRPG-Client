@@ -27,10 +27,11 @@ public class PacketHandler
         }
         else
         {
-            Managers.Scene.LoadScene(Define.Scene.Lobby);
-            var lobbyScene = (LobbyScene)Managers.Scene.CurrentScene;
-            var list = loginPacket.Players.ToList();
-            lobbyScene.UpdateLobbyPlayers(loginPacket.Players.ToList());
+            Managers.Scene.LoadScene(Define.Scene.Lobby, () =>
+            {
+                var lobbyScene = (LobbyScene)Managers.Scene.CurrentScene;
+                lobbyScene.UpdateLobbyPlayers(loginPacket.Players.ToList());
+            });
         }
     }
 
@@ -40,9 +41,7 @@ public class PacketHandler
 
         if (createOkPacket.Player == null)
         {
-            var createPlayerPacket = new C_CreatePlayer();
-            createPlayerPacket.Name = $"Player_{Random.Range(0, 10000):0000}";
-            Managers.Network.Send(createPlayerPacket);
+            Debug.Log("Create Failed");
         }
         else
         {
@@ -54,7 +53,12 @@ public class PacketHandler
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
         var enterGamePacket = (S_EnterGame)packet;
-        Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
+
+        // TODO : 게임 입장 로직
+        Managers.Scene.LoadScene(Define.Scene.Game, () =>
+        {
+            Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
+        });
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)

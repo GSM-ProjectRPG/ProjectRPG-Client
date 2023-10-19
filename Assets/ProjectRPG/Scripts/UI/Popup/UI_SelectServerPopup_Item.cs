@@ -36,7 +36,6 @@ namespace ProjectRPG
         private void OnClickButton(PointerEventData evt)
         {
             Managers.Network.Connect(Info);
-            Managers.Scene.LoadScene(Define.Scene.Lobby);
             Managers.UI.ClosePopupUI();
         }
     }
