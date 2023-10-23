@@ -26,5 +26,10 @@ namespace ProjectRPG
         {
             return new Vector3(vector.X, vector.Y, vector.Z);
         }
+
+        public static Vector ToVector(this Vector3 vector)
+        {
+            return new Vector() { X = vector.x, Y = vector.y, Z = vector.z };
+        }
     }
 }
