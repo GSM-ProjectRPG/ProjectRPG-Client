@@ -23,6 +23,7 @@ namespace ProjectRPG
 
         private Rigidbody _rigidbody;
         private Vector3 _inputVector;
+        private float _speed = 2f;
 
         private void Start()
         {
@@ -48,12 +49,15 @@ namespace ProjectRPG
 
         private void FixedUpdate()
         {
-            Move();
+            transform.Translate(_speed * Time.fixedDeltaTime * _inputVector);
+
+            if ((IsMine && !Input.anyKey) || !IsMine)
+                Move();
         }
 
         private void Move()
         {
-            var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.15f);
+            var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.05f);
             _rigidbody.MovePosition(movePos);
         }
     }
