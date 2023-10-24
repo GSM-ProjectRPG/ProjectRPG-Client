@@ -23,39 +23,44 @@ namespace ProjectRPG
 
         private Rigidbody _rigidbody;
         private Vector3 _inputVector;
-        private float _speed = 2f;
+        private float _speed = 2f; // 임시 이동속도
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            MoveVector = Transform.Position.ToVector3();
         }
 
         private void Update()
         {
             if (IsMine)
-            {
-                float h = Input.GetAxisRaw("Horizontal");
-                float v = Input.GetAxisRaw("Vertical");
-                var vector = new Vector3(h, 0, v).normalized;
-
-                if (_inputVector != vector)
-                {
-                    _inputVector = vector;
-                    var moveInputPacket = new C_Move() { InputVector = vector.ToVector() };
-                    Managers.Network.Send(moveInputPacket);
-                }
-            }
+                MoveInput();
         }
 
         private void FixedUpdate()
         {
-            transform.Translate(_speed * Time.fixedDeltaTime * _inputVector);
+            if (IsMine)
+                transform.Translate(_speed * Time.fixedDeltaTime * _inputVector);
 
-            if ((IsMine && !Input.anyKey) || !IsMine)
-                Move();
+            if (!IsMine || (IsMine && !Input.anyKey))
+                SyncPosition();
         }
 
-        private void Move()
+        private void MoveInput()
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            var vector = new Vector3(h, 0, v).normalized;
+
+            if (_inputVector != vector)
+            {
+                _inputVector = vector;
+                var moveInputPacket = new C_Move() { InputVector = vector.ToVector() };
+                Managers.Network.Send(moveInputPacket);
+            }
+        }
+
+        private void SyncPosition()
         {
             var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.05f);
             _rigidbody.MovePosition(movePos);
