@@ -49,6 +49,7 @@ namespace ProjectRPG
                 {
                     MyPlayer = go.GetComponent<PlayerController>();
                     MyPlayer.Id = info.Id;
+                    MyPlayer.IsMine = true;
                     MyPlayer.Transform = info.Transform;
                     MyPlayer.Stat.MergeFrom(info.Stat);
                 }
