@@ -76,11 +76,11 @@ namespace ProjectRPG
             if (_inputVector != vector)
             {
                 _inputVector = vector;
-                SendPosition(Quaternion.Euler(0, _cameraRot, 0) * vector);
+                SendInputDirectionVector(Quaternion.Euler(0, _cameraRot, 0) * vector);
             }
         }
 
-        private void SendPosition(Vector3 vector)
+        private void SendInputDirectionVector(Vector3 vector)
         {
             var moveInputPacket = new C_Move() { InputVector = vector.ToVector() };
             Managers.Network.Send(moveInputPacket);
