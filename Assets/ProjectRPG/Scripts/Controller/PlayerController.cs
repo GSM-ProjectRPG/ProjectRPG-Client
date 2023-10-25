@@ -85,7 +85,7 @@ namespace ProjectRPG
             var moveInputPacket = new C_Move() { InputVector = vector.ToVector() };
             Managers.Network.Send(moveInputPacket);
         }
-        
+
         private void SyncPosition()
         {
             var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.05f);
@@ -105,7 +105,7 @@ namespace ProjectRPG
             {
                 _animator.SetBool("walking", true);
                 Quaternion targetRot = Quaternion.Euler(0, Mathf.Atan2(delta.z, -delta.x) * Mathf.Rad2Deg - 90, 0);
-                _rigidbody.rotation = Quaternion.Lerp(targetRot, _rigidbody.rotation, Time.fixedDeltaTime * 25);
+                _rigidbody.rotation = Quaternion.Lerp(targetRot, _rigidbody.rotation, 1 - Time.fixedDeltaTime * 10);
             }
         }
     }
