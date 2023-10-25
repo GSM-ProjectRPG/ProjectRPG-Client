@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d24144d1-1a46-41d3-b618-e97f48840152" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/Scene/GameScene.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/Scene/GameScene.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/UI/Scene/UI_GameScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectRPG/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/Network/Packet/PacketHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/Network/Packet/PacketHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/High_PipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/High_PipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Low_PipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Low_PipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Medium_PipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Medium_PipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Very High_PipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Very High_PipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Very Low_PipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Very Low_PipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ProjectRPG/Resources/Prefabs/UI/Scene/UI_GameScene.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Resources/Prefabs/UI/Scene/UI_GameScene.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/UI/Scene/UI_GameScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectRPG/Scripts/UI/Scene/UI_GameScene.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +112,7 @@
       <workItem from="1697161706667" duration="7583000" />
       <workItem from="1697453548741" duration="1484000" />
       <workItem from="1698146151062" duration="8245000" />
-      <workItem from="1698223653282" duration="1193000" />
+      <workItem from="1698223653282" duration="2929000" />
     </task>
     <servers />
   </component>

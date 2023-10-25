@@ -36,13 +36,15 @@ public class UI_GameScene : UI_Scene
             Content = inputText.text
         };
         Managers.Network.Send(chat);
+
+        inputText.text = "";
     }
 
     public void AddChat(string playerName, string chatText)
     {
         var chatLog = GetObject((int)GameObjects.ChatLog).gameObject;
-        var newChatText = Managers.Resource.Instantiate("ChatText").GetComponent<TMP_Text>();
-        newChatText.text = chatText;
+        var newChatText = Managers.Resource.Instantiate("UI/ChatText").GetComponent<TMP_Text>();
+        newChatText.text = $"{playerName} : {chatText}";
         newChatText.transform.parent = chatLog.transform;
     }
 }
