@@ -40,6 +40,7 @@ namespace ProjectRPG
             _animator = GetComponentInChildren<Animator>();
             _camera = Camera.main;
             MoveVector = Transform.Position.ToVector3();
+            _rigidbody.position = MoveVector;
         }
 
         private void Update()
