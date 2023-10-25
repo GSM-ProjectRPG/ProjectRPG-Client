@@ -92,7 +92,7 @@ public class PacketHandler
 
     public static void S_SkillHandler(PacketSession session, IMessage packet)
     {
-
+        
     }
 
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
@@ -127,7 +127,9 @@ public class PacketHandler
 
     public static void S_ChatHandler(PacketSession session, IMessage packet)
     {
-
+        S_Chat schat = (S_Chat)packet;
+        var character = Managers.Object.FindObjectById(schat.ObjectId);
+        Managers.UI.SceneUI.GetComponent<UI_GameScene>().AddChat(character.name, schat.Content);
     }
 
     public static void S_PingHandler(PacketSession session, IMessage packet)
