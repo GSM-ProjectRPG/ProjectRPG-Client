@@ -1,6 +1,6 @@
 using UnityEngine;
 using Google.Protobuf.Protocol;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 namespace ProjectRPG
 {
@@ -63,8 +63,8 @@ namespace ProjectRPG
             if (IsMine)
                 OnMove(_rigidbody.position + Quaternion.Euler(0, _cameraRot, 0) * (_speed * Time.fixedDeltaTime * _inputVector));
 
-            if (!IsMine || (IsMine && !Input.anyKey))
-                SyncPosition();
+            //if (!IsMine || (IsMine && !Input.anyKey))
+            SyncPosition();
         }
 
         private void MoveInput()
@@ -89,13 +89,16 @@ namespace ProjectRPG
         private void SyncPosition()
         {
             var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.05f);
-            OnMove(movePos);
+            if (_inputVector == Vector3.zero)
+            {
+                OnMove(movePos);
+            }
+            _rigidbody.MovePosition(movePos);
         }
 
         private void OnMove(Vector3 pos)
         {
             Vector3 delta = pos - _rigidbody.position;
-            _rigidbody.MovePosition(pos);
 
             if (delta == Vector3.zero)
             {
