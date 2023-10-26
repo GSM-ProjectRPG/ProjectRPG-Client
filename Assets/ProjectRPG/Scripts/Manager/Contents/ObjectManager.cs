@@ -50,14 +50,14 @@ namespace ProjectRPG
                     MyPlayer = go.GetComponent<PlayerController>();
                     MyPlayer.Id = info.Id;
                     MyPlayer.IsMine = true;
-                    MyPlayer.Transform = info.Transform;
+                    MyPlayer.ServerPos = info.Transform.Position.ToVector3();
                     MyPlayer.Stat.MergeFrom(info.Stat);
                 }
                 else
                 {
                     var pc = go.GetComponent<PlayerController>();
                     pc.Id = info.Id;
-                    pc.Transform = info.Transform;
+                    pc.ServerPos = info.Transform.Position.ToVector3();
                     pc.Stat.MergeFrom(info.Stat);
                 }
 

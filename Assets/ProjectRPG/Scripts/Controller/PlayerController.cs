@@ -6,61 +6,45 @@ namespace ProjectRPG
 {
     public class PlayerController : NetworkObject
     {
-        private TransformInfo _transform = new TransformInfo() { Position = new Vector(), Rotation = new Vector(), Scale = new Vector() };
-        public TransformInfo Transform
-        {
-            get => _transform;
-            set
-            {
-                if (_transform.Equals(value)) return;
-                transform.position = value.Position.ToVector3();
-                transform.localEulerAngles = value.Rotation.ToVector3();
-                transform.localScale = value.Scale.ToVector3();
-                _transform.MergeFrom(value);
-            }
-        }
         public StatInfo Stat { get; set; } = new StatInfo();
 
-        const float tickRate = 1f / 5f;
+        private const float tickRate = 1f / 5f;
+        private float _speed = 2f;
 
-        Vector3 _beforeTcikEndPos; //이전의 서버 좌표 + 로컬 이동량
-        Vector3 _localMove;
-        float _serverTimer;
-
-        Vector3 _moveVector;
-        public Vector3 MoveVector
+        private Vector3 _serverPos;
+        public Vector3 ServerPos
         {
-            get => _moveVector;
+            get => _serverPos;
             set
             {
-                _beforeTcikEndPos = _moveVector + _localMove;
-                _moveVector = value;
-                _localMove = Vector3.zero;
+                _localPrevDest = _serverPos + _localMoveVector;
+                _serverPos = value;
+                _localMoveVector = Vector3.zero;
                 _serverTimer = 0;
             }
         }
 
+        private Vector3 _inputVector;
+        private Vector3 _localMoveVector;
+        private Vector3 _localPrevDest;
+        private float _serverTimer;
+
         private Rigidbody _rigidbody;
         private Animator _animator;
         private Camera _camera;
-        private float _speed = 2f; // 임시 이동속도
 
-        private Vector3 _inputVector;
-        public float _cameraRot = 0;
-        public float _cameraDistance = 3;
-        private float _cameraSensitivity = 1f; //카메라 감도
+        private float _cameraRot = 0;
+        private float _cameraDistance = 3;
+        private float _cameraSensitivity = 1f;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
             _camera = Camera.main;
-            MoveVector = Transform.Position.ToVector3();
-            _rigidbody.position = MoveVector;
 
-            _beforeTcikEndPos = MoveVector;
-            _localMove = Vector3.zero;
-            _serverTimer = 0;
+            _rigidbody.position = ServerPos;
+            _localPrevDest = ServerPos;
         }
 
         private void Update()
@@ -86,11 +70,11 @@ namespace ProjectRPG
             {
                 Vector3 moveDelta = Quaternion.Euler(0, _cameraRot, 0) * (_speed * Time.fixedDeltaTime * _inputVector);
                 SetMoveAnimation(moveDelta);
-                _localMove += moveDelta;
+                _localMoveVector += moveDelta;
             }
             if (!IsMine)
             {
-                Vector3 moveDelta = MoveVector - _rigidbody.position;
+                Vector3 moveDelta = ServerPos - _rigidbody.position;
                 SetMoveAnimation(moveDelta.magnitude < 0.05f ? Vector3.zero : moveDelta);
             }
 
@@ -118,8 +102,8 @@ namespace ProjectRPG
 
         private void SyncPosition()
         {
-            var movePos = _moveVector + _localMove;
-            movePos = Vector3.Lerp(_beforeTcikEndPos + _localMove, movePos, _serverTimer / tickRate);
+            var movePos = _serverPos + _localMoveVector;
+            movePos = Vector3.Lerp(_localPrevDest + _localMoveVector, movePos, _serverTimer / tickRate);
             if (!IsMine)
             {
                 movePos = Vector3.Lerp(_rigidbody.position, movePos, Time.fixedDeltaTime * 10);
