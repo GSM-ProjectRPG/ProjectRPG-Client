@@ -69,7 +69,14 @@ namespace ProjectRPG
             }
             else if (type == GameObjectType.Monster)
             {
+                var go = Managers.Resource.Instantiate("Creature/TestMonster");
+                go.name = info.Name;
+                _objects.Add(info.Id, go);
 
+                var mc = go.GetComponent<MonsterController>();
+                mc.Id = info.Id;
+                mc.Transform = info.Transform;
+                mc.Stat.MergeFrom(info.Stat);
             }
         }
 
