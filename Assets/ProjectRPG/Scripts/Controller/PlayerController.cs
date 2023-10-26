@@ -21,8 +21,24 @@ namespace ProjectRPG
         }
         public StatInfo Stat { get; set; } = new StatInfo();
 
+        const float tickRate = 1f / 5f;
 
-        public Vector3 MoveVector { get; set; }
+        Vector3 _beforeTcikEndPos; //이전의 서버 좌표 + 로컬 이동량
+        Vector3 _localMove;
+        float _serverTimer;
+
+        Vector3 _moveVector;
+        public Vector3 MoveVector
+        {
+            get => _moveVector;
+            set
+            {
+                _beforeTcikEndPos = _moveVector + _localMove;
+                _moveVector = value;
+                _localMove = Vector3.zero;
+                _serverTimer = 0;
+            }
+        }
 
         private Rigidbody _rigidbody;
         private Animator _animator;
@@ -41,10 +57,15 @@ namespace ProjectRPG
             _camera = Camera.main;
             MoveVector = Transform.Position.ToVector3();
             _rigidbody.position = MoveVector;
+
+            _beforeTcikEndPos = MoveVector;
+            _localMove = Vector3.zero;
+            _serverTimer = 0;
         }
 
         private void Update()
         {
+            _serverTimer += Time.deltaTime;
             if (IsMine)
             {
                 _camera.transform.position = transform.position + Quaternion.Euler(0, _cameraRot, 0) * new Vector3(0, 0.6f, -1) * _cameraDistance;
@@ -62,9 +83,17 @@ namespace ProjectRPG
         private void FixedUpdate()
         {
             if (IsMine)
-                OnMove(_rigidbody.position + Quaternion.Euler(0, _cameraRot, 0) * (_speed * Time.fixedDeltaTime * _inputVector));
+            {
+                Vector3 moveDelta = Quaternion.Euler(0, _cameraRot, 0) * (_speed * Time.fixedDeltaTime * _inputVector);
+                SetMoveAnimation(moveDelta);
+                _localMove += moveDelta;
+            }
+            if (!IsMine)
+            {
+                Vector3 moveDelta = MoveVector - _rigidbody.position;
+                SetMoveAnimation(moveDelta.magnitude < 0.05f ? Vector3.zero : moveDelta);
+            }
 
-            //if (!IsMine || (IsMine && !Input.anyKey))
             SyncPosition();
         }
 
@@ -89,18 +118,18 @@ namespace ProjectRPG
 
         private void SyncPosition()
         {
-            var movePos = Vector3.MoveTowards(_rigidbody.position, MoveVector, 0.05f);
-            if (_inputVector == Vector3.zero)
+            var movePos = _moveVector + _localMove;
+            movePos = Vector3.Lerp(_beforeTcikEndPos + _localMove, movePos, _serverTimer / tickRate);
+            if (!IsMine)
             {
-                OnMove(movePos);
+                movePos = Vector3.Lerp(_rigidbody.position, movePos, Time.fixedDeltaTime * 10);
             }
+
             _rigidbody.MovePosition(movePos);
         }
 
-        private void OnMove(Vector3 pos)
+        private void SetMoveAnimation(Vector3 delta)
         {
-            Vector3 delta = pos - _rigidbody.position;
-
             if (delta == Vector3.zero)
             {
                 _animator.SetBool("walking", false);
