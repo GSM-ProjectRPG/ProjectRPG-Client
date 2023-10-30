@@ -75,7 +75,7 @@ namespace ProjectRPG
 
                 var mc = go.GetComponent<MonsterController>();
                 mc.Id = info.Id;
-                mc.Transform = info.Transform;
+                mc.ServerPos = info.Transform.Position.ToVector3();
                 mc.Stat.MergeFrom(info.Stat);
             }
         }
