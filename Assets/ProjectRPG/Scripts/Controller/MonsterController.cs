@@ -12,7 +12,8 @@ namespace ProjectRPG
 
         private void Update()
         {
-            
+            var pos = Vector3.Lerp(transform.position, ServerPos, 0.05f);
+            transform.position = pos;
         }
 
         private void FixedUpdate()
