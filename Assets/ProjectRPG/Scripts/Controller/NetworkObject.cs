@@ -9,6 +9,6 @@ namespace ProjectRPG
         public bool IsMine { get; set; }
 
         public virtual Vector3 ServerPos { get; set; }
-        public virtual StatInfo Stat { get; set; }
+        public virtual StatInfo Stat { get; set; } = new StatInfo();
     }
 }
