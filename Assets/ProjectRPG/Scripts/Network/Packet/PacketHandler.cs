@@ -87,7 +87,7 @@ public class PacketHandler
         var movePacket = (S_Move)packet;
         var player = Managers.Object.FindObjectById(movePacket.ObjectId);
         if (player != null)
-            player.GetComponent<PlayerController>().MoveVector = movePacket.Position.ToVector3();
+            player.GetComponent<PlayerController>().ServerPos = movePacket.Position.ToVector3();
     }
 
     public static void S_SkillHandler(PacketSession session, IMessage packet)

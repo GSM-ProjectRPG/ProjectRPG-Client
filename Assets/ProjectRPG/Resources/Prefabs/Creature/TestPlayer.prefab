@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62adc471dfb28534f9820b2e5627572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraRot: 0
+  _cameraDistance: 3
 --- !u!54 &6937495652372525954
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,6 +123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4483974934208566519, guid: 732d5afd827788c40a6201348a092476, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 10169b98d06ce074aa3f313c8bf63be6, type: 2}
     - target: {fileID: 6032388583983721931, guid: 732d5afd827788c40a6201348a092476, type: 3}
       propertyPath: m_Name
       value: Character
