@@ -6,13 +6,11 @@ namespace ProjectRPG
 {
     public class PlayerController : NetworkObject
     {
-        public StatInfo Stat { get; set; } = new StatInfo();
-
         private const float tickRate = 1f / 5f;
         private float _speed = 2f;
 
         private Vector3 _serverPos;
-        public Vector3 ServerPos
+        public override Vector3 ServerPos
         {
             get => _serverPos;
             set
