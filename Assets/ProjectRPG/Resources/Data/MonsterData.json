@@ -2,40 +2,58 @@
   "monsters": [
     {
       "id": "0",
-      "name": "NULL",
+      "name": "Slime",
       "stat": {
         "level": "1",
-        "maxHp": "20",
+        "maxHp": "60",
         "atkPower": "5",
-        "speed": "5.0",
-        "totalExp": "10"
+        "speed": "0.6",
+        "totalExp": "3"
       },
       "rewards": [
-        {
-          "probability": "10",
-          "itemId": "1",
-          "count": "1"
-        },
-        {
-          "probability": "10",
-          "itemId": "2",
-          "count": "1"
-        },
-        {
-          "probability": "10",
-          "itemId": "100",
-          "count": "1"
-        },
-        {
-          "probability": "10",
-          "itemId": "101",
-          "count": "1"
-        },
-        {
-          "probability": "10",
-          "itemId": "200",
-          "count": "5"
-        }
+
+      ]
+    },
+    {
+      "id": "1",
+      "name": "PinkSlime",
+      "stat": {
+        "level": "1",
+        "maxHp": "200",
+        "atkPower": "20",
+        "speed": "0.5",
+        "totalExp": "4"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "2",
+      "name": "GreenDevilTree",
+      "stat": {
+        "level": "2",
+        "maxHp": "200",
+        "atkPower": "40",
+        "speed": "0.4",
+        "totalExp": "5"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "3",
+      "name": "RedDevilTree",
+      "stat": {
+        "level": "2",
+        "maxHp": "300",
+        "atkPower": "30",
+        "speed": "0.3",
+        "totalExp": "7"
+      },
+      "rewards": [
+
       ]
     }
   ]
