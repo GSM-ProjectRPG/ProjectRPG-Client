@@ -7,6 +7,7 @@
         "level": "1",
         "maxHp": "60",
         "atkPower": "5",
+        "atkDelay": "2",
         "speed": "0.6",
         "totalExp": "3"
       },
@@ -21,6 +22,7 @@
         "level": "1",
         "maxHp": "200",
         "atkPower": "20",
+        "atkDelay": "3",
         "speed": "0.5",
         "totalExp": "4"
       },
@@ -35,6 +37,7 @@
         "level": "2",
         "maxHp": "200",
         "atkPower": "40",
+        "atkDelay": "3",
         "speed": "0.4",
         "totalExp": "5"
       },
@@ -49,8 +52,144 @@
         "level": "2",
         "maxHp": "300",
         "atkPower": "30",
+        "atkDelay": "3",
+        "speed": "0.4",
+        "totalExp": "6"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "4",
+      "name": "RainbowDevilTree",
+      "stat": {
+        "level": "2",
+        "maxHp": "1000",
+        "atkPower": "70",
+        "atkDelay": "3",
         "speed": "0.3",
         "totalExp": "7"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "5",
+      "name": "BabyGinseng",
+      "stat": {
+        "level": "3",
+        "maxHp": "600",
+        "atkPower": "90",
+        "atkDelay": "1",
+        "speed": "0.7",
+        "totalExp": "10"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "6",
+      "name": "OldGinseng",
+      "stat": {
+        "level": "3",
+        "maxHp": "900",
+        "atkPower": "60",
+        "atkDelay": "3",
+        "speed": "0.5",
+        "totalExp": "11"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "7",
+      "name": "GinsengQueen",
+      "stat": {
+        "level": "3",
+        "maxHp": "2000",
+        "atkPower": "150",
+        "atkDelay": "2",
+        "speed": "0.5",
+        "totalExp": "13"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "8",
+      "name": "BlackSlime",
+      "stat": {
+        "level": "4",
+        "maxHp": "2500",
+        "atkPower": "200",
+        "atkDelay": "3",
+        "speed": "0.5",
+        "totalExp": "15"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "9",
+      "name": "BlackDevilTree",
+      "stat": {
+        "level": "4",
+        "maxHp": "3000",
+        "atkPower": "250",
+        "atkDelay": "3",
+        "speed": "0.3",
+        "totalExp": "16"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "10",
+      "name": "RottenGinseng",
+      "stat": {
+        "level": "4",
+        "maxHp": "3500",
+        "atkPower": "300",
+        "atkDelay": "2",
+        "speed": "0.6",
+        "totalExp": "17"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Spider",
+      "stat": {
+        "level": "5",
+        "maxHp": "5000",
+        "atkPower": "500",
+        "atkDelay": "1",
+        "speed": "0.8",
+        "totalExp": "20"
+      },
+      "rewards": [
+
+      ]
+    },
+    {
+      "id": "12",
+      "name": "SpiderKing",
+      "stat": {
+        "level": "5",
+        "maxHp": "10000",
+        "atkPower": "700",
+        "atkDelay": "2",
+        "speed": "0.7",
+        "totalExp": "40"
       },
       "rewards": [
 
