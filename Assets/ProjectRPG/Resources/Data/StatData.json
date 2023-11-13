@@ -2,24 +2,403 @@
   "stats": [
     {
       "level": "1",
-      "maxHp": "200",
-      "atkPower": "20",
-      "speed": "10.0",
-      "totalExp": "0"
-    },
-    {
-      "level": "2",
-      "maxHp": "250",
-      "atkPower": "25",
-      "speed": "10.0",
+      "maxHp": "100",
+      "atkPower": "10",
+      "atkDelay": "0",
+      "speed": "1",
       "totalExp": "10"
     },
     {
+      "level": "2",
+      "maxHp": "110",
+      "atkPower": "11",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "21"
+    },
+    {
       "level": "3",
-      "maxHp": "300",
-      "atkPower": "30",
-      "speed": "10.0",
-      "totalExp": "20"
+      "maxHp": "120",
+      "atkPower": "12",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "33"
+    },
+    {
+      "level": "4",
+      "maxHp": "130",
+      "atkPower": "13",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "46"
+    },
+    {
+      "level": "5",
+      "maxHp": "150",
+      "atkPower": "15",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "61"
+    },
+    {
+      "level": "6",
+      "maxHp": "160",
+      "atkPower": "16",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "77"
+    },
+    {
+      "level": "7",
+      "maxHp": "180",
+      "atkPower": "18",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "95"
+    },
+    {
+      "level": "8",
+      "maxHp": "190",
+      "atkPower": "19",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "114"
+    },
+    {
+      "level": "9",
+      "maxHp": "210",
+      "atkPower": "21",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "135"
+    },
+    {
+      "level": "10",
+      "maxHp": "240",
+      "atkPower": "24",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "159"
+    },
+    {
+      "level": "11",
+      "maxHp": "260",
+      "atkPower": "26",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "185"
+    },
+    {
+      "level": "12",
+      "maxHp": "290",
+      "atkPower": "29",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "214"
+    },
+    {
+      "level": "13",
+      "maxHp": "310",
+      "atkPower": "31",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "245"
+    },
+    {
+      "level": "14",
+      "maxHp": "350",
+      "atkPower": "35",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "280"
+    },
+    {
+      "level": "15",
+      "maxHp": "380",
+      "atkPower": "38",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "318"
+    },
+    {
+      "level": "16",
+      "maxHp": "420",
+      "atkPower": "42",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "360"
+    },
+    {
+      "level": "17",
+      "maxHp": "460",
+      "atkPower": "46",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "406"
+    },
+    {
+      "level": "18",
+      "maxHp": "510",
+      "atkPower": "51",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "457"
+    },
+    {
+      "level": "19",
+      "maxHp": "560",
+      "atkPower": "56",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "513"
+    },
+    {
+      "level": "20",
+      "maxHp": "610",
+      "atkPower": "61",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "574"
+    },
+    {
+      "level": "21",
+      "maxHp": "670",
+      "atkPower": "67",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "641"
+    },
+    {
+      "level": "22",
+      "maxHp": "740",
+      "atkPower": "74",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "715"
+    },
+    {
+      "level": "23",
+      "maxHp": "810",
+      "atkPower": "81",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "796"
+    },
+    {
+      "level": "24",
+      "maxHp": "900",
+      "atkPower": "90",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "886"
+    },
+    {
+      "level": "25",
+      "maxHp": "980",
+      "atkPower": "98",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "984"
+    },
+    {
+      "level": "26",
+      "maxHp": "1080",
+      "atkPower": "108",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1092"
+    },
+    {
+      "level": "27",
+      "maxHp": "1190",
+      "atkPower": "119",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1211"
+    },
+    {
+      "level": "28",
+      "maxHp": "1310",
+      "atkPower": "131",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1342"
+    },
+    {
+      "level": "29",
+      "maxHp": "1440",
+      "atkPower": "144",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1486"
+    },
+    {
+      "level": "30",
+      "maxHp": "1590",
+      "atkPower": "159",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1645"
+    },
+    {
+      "level": "31",
+      "maxHp": "1740",
+      "atkPower": "174",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "1819"
+    },
+    {
+      "level": "32",
+      "maxHp": "1920",
+      "atkPower": "192",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "2011"
+    },
+    {
+      "level": "33",
+      "maxHp": "2110",
+      "atkPower": "211",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "2222"
+    },
+    {
+      "level": "34",
+      "maxHp": "2320",
+      "atkPower": "232",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "2454"
+    },
+    {
+      "level": "35",
+      "maxHp": "2550",
+      "atkPower": "255",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "2709"
+    },
+    {
+      "level": "36",
+      "maxHp": "2810",
+      "atkPower": "281",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "2990"
+    },
+    {
+      "level": "37",
+      "maxHp": "3090",
+      "atkPower": "309",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "3299"
+    },
+    {
+      "level": "38",
+      "maxHp": "3400",
+      "atkPower": "340",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "3639"
+    },
+    {
+      "level": "39",
+      "maxHp": "3740",
+      "atkPower": "374",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "4013"
+    },
+    {
+      "level": "40",
+      "maxHp": "4110",
+      "atkPower": "411",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "4424"
+    },
+    {
+      "level": "41",
+      "maxHp": "4530",
+      "atkPower": "453",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "4877"
+    },
+    {
+      "level": "42",
+      "maxHp": "4980",
+      "atkPower": "498",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "5375"
+    },
+    {
+      "level": "43",
+      "maxHp": "5480",
+      "atkPower": "548",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "5923"
+    },
+    {
+      "level": "44",
+      "maxHp": "6020",
+      "atkPower": "602",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "6525"
+    },
+    {
+      "level": "45",
+      "maxHp": "6630",
+      "atkPower": "663",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "7188"
+    },
+    {
+      "level": "46",
+      "maxHp": "7290",
+      "atkPower": "729",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "7917"
+    },
+    {
+      "level": "47",
+      "maxHp": "8020",
+      "atkPower": "802",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "8719"
+    },
+    {
+      "level": "48",
+      "maxHp": "8820",
+      "atkPower": "882",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "9601"
+    },
+    {
+      "level": "49",
+      "maxHp": "9700",
+      "atkPower": "970",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "10571"
+    },
+    {
+      "level": "50",
+      "maxHp": "10670",
+      "atkPower": "1067",
+      "atkDelay": "0",
+      "speed": "1",
+      "totalExp": "11638"
     }
   ]
 }
