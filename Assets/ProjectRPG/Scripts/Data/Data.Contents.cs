@@ -142,4 +142,36 @@ namespace ProjectRPG.Data
         }
     }
     #endregion
+
+    #region Spawn
+    [Serializable]
+    public class Vector
+    {
+        public int x;
+        public int y;
+        public int z;
+    }
+
+    [Serializable]
+    public class SpawnData
+    {
+        public int id;
+        public string name;
+        public Vector pos;
+        public int range;
+    }
+
+    public class SpawnLoader : ILoader<int, SpawnData>
+    {
+        public List<SpawnData> spawns = new List<SpawnData>();
+
+        public Dictionary<int, SpawnData> MakeDict()
+        {
+            var dict = new Dictionary<int, SpawnData>();
+            foreach (SpawnData spawn in spawns)
+                dict.Add(spawn.id, spawn);
+            return dict;
+        }
+    }
+    #endregion
 }
