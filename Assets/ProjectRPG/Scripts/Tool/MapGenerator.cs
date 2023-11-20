@@ -4,18 +4,6 @@ using UnityEngine;
 
 namespace ProjectRPG
 {
-    [System.Serializable]
-    public class SpawnArea
-    {
-        public Color GizmoColor;
-
-        [Header("Spawn Area Settings")]
-        public string Name;
-        public Vector3Int Offset;
-        public int Radius;
-        public int MaxSpawnCount;
-    }
-
     public class MapGenerator : MonoBehaviour
     {
         [Header("Map Settings")]
@@ -26,11 +14,12 @@ namespace ProjectRPG
         [SerializeField] private Color _obstacleColor;
         [SerializeField] private int _groundLayerMask;
         [SerializeField] private int _obstacleLayerMask;
-        [SerializeField] private List<SpawnArea> _spawnAreas;
 
         [Header("Extract Settings")]
         [SerializeField] private string _mapName;
         [SerializeField] private string _filePath = "../ProjectRPG-Server/Common/MapData";
+
+        [SerializeField] private bool _drawGizmos = false;
 
         private KeyValuePair<Vector3, int>[,] _map = null;
 
@@ -87,20 +76,23 @@ namespace ProjectRPG
             Gizmos.color = Color.white;
             Gizmos.DrawWireCube(transform.position, _calculationScale * 2);
 
-            if (_map != null)
+            if (_drawGizmos)
             {
-                foreach (var origin in _map)
+                if (_map != null)
                 {
-                    int layer = origin.Value;
+                    foreach (var origin in _map)
+                    {
+                        int layer = origin.Value;
 
-                    if (layer == _groundLayerMask)
-                        Gizmos.color = _groundColor;
-                    else if (layer == _obstacleLayerMask)
-                        Gizmos.color = _obstacleColor;
-                    else
-                        Gizmos.color = Color.black;
+                        if (layer == _groundLayerMask)
+                            Gizmos.color = _groundColor;
+                        else if (layer == _obstacleLayerMask)
+                            Gizmos.color = _obstacleColor;
+                        else
+                            Gizmos.color = Color.black;
 
-                    Gizmos.DrawCube(origin.Key + new Vector3(0, 0.001f, 0), new Vector3(0.95f, 0, 0.95f));
+                        Gizmos.DrawCube(origin.Key + new Vector3(0, 0.001f, 0), new Vector3(0.95f, 0, 0.95f));
+                    }
                 }
             }
         }
