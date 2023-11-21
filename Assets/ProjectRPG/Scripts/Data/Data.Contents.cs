@@ -145,14 +145,6 @@ namespace ProjectRPG.Data
 
     #region Spawn
     [Serializable]
-    public class Vector
-    {
-        public int x;
-        public int y;
-        public int z;
-    }
-
-    [Serializable]
     public class SpawnData
     {
         public int id;
