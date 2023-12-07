@@ -72,7 +72,10 @@ public class PacketHandler
     {
         var spawnPacket = (S_Spawn)packet;
         foreach (var info in spawnPacket.Objects)
+        {
             Managers.Object.Add(info, myPlayer: false);
+            Debug.Log($"Spawn ({info.Name})");
+        }
     }
 
     public static void S_DespawnHandler(PacketSession session, IMessage packet)
