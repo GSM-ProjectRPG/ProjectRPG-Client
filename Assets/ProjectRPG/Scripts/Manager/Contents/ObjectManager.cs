@@ -69,8 +69,7 @@ namespace ProjectRPG
             }
             else if (type == GameObjectType.Monster)
             {
-                var go = Managers.Resource.Instantiate("Creature/TestMonster");
-                go.name = info.Name;
+                var go = Managers.Resource.Instantiate($"Creature/Monster/{info.Name}");
                 _objects.Add(info.Id, go);
 
                 var mc = go.GetComponent<MonsterController>();
